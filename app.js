@@ -3,10 +3,14 @@ var host = process.env.PORT ? '0.0.0.0' : '127.0.0.1';
 var port = process.env.PORT || 8080;
 
 var cors_proxy = require('cors-anywhere');
-cors_proxy.createServer({
+const app = cors_proxy.createServer({
     originWhitelist: [], // Allow all origins
     //requireHeader: ['origin', 'x-requested-with'],
     removeHeaders: ['cookie', 'cookie2']
 }).listen(port, host, function() {
     console.log('Running CORS Anywhere on ' + host + ':' + port);
 })
+
+const {createProxyMiddleware } = require('http-proxy-middleware');
+const wsProxy = createProxyMiddleware('/socket.io', {target:'ws://geotestcf-BackendEnvironment-dev.eba-9kxprghf.ap-southeast-2.elasticbeanstalk.com/', changeOrigin: true, ws:true});
+console.log(app.on('upgrade', wsProxy.upgrade))
