@@ -13,7 +13,7 @@ var port = process.env.PORT || 8080;
 const express = require('express');
 const app = express();
 const {createProxyMiddleware } = require('http-proxy-middleware');
-const wsProxy = createProxyMiddleware('ws://geotestcf-BackendEnvironment-dev.eba-9kxprghf.ap-southeast-2.elasticbeanstalk.com');
+const wsProxy = createProxyMiddleware('http://geotestcf-BackendEnvironment-dev.eba-9kxprghf.ap-southeast-2.elasticbeanstalk.com');
 app.use(wsProxy)
 app.listen(8080)
 app.on('upgrade', wsProxy.upgrade)
