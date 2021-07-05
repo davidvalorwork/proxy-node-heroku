@@ -13,6 +13,6 @@ cors_proxy.createServer({
 const express = require('express');
 const app = express();
 const {createProxyMiddleware } = require('http-proxy-middleware');
-const wsProxy = createProxyMiddleware('/socket.io', {target:'ws://geotestcf-BackendEnvironment-dev.eba-9kxprghf.ap-southeast-2.elasticbeanstalk.com/', changeOrigin: true, ws:true});
-app.on('upgrade', wsProxy.upgrade)
+const wsProxy = createProxyMiddleware('ws://geotestcf-BackendEnvironment-dev.eba-9kxprghf.ap-southeast-2.elasticbeanstalk.com');
 app.listen(3000)
+app.on('upgrade', wsProxy.upgrade)
