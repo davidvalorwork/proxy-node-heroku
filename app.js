@@ -13,7 +13,7 @@ var port = process.env.PORT || 8080;
 const express = require('express');
 const app = express();
 const {createProxyMiddleware } = require('http-proxy-middleware');
-const wsProxy = createProxyMiddleware('ws://geotestcf-database-dev.cftaufxxiewk.ap-southeast-2.rds.amazonaws.com')
+const wsProxy = createProxyMiddleware('ws://awseb-e-e-AWSEBLoa-HN82XDCPCIIM-726758365.ap-southeast-2.elb.amazonaws.com')
 app.use(wsProxy)
 app.listen(port,host,function() {
     console.log('Running CORS Anywhere on ' + host + ':' + port);
